@@ -1,0 +1,48 @@
+{{extend 'admin.html'}}
+    
+     <div class="modal fade modal" id="editar_palabra">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3>Editar</h3>
+        </div>
+        <div class="modal-body">
+            {{=agregar.custom.begin}}
+            <div class="formularios_admin">
+                <div class="primer_hijo"><h4>Palabra:</h4>{{=agregar.custom.widget.palabra}}</div>
+                <div class="primer_hijo">
+                    <div><h4>Sustantivo</h4>{{=agregar.custom.widget.sustantivo}}</div>
+                    <div><h4>Glosario</h4>{{=agregar.custom.widget.anadir_glosario}}</div>
+                    <div><h4>Verbo</h4>{{=agregar.custom.widget.verbo}}</div>
+                    <div><h4>Adverbio</h4>{{=agregar.custom.widget.adverbio}}</div>
+                    <div><h4>Adjetivo</h4>{{=agregar.custom.widget.adjetivo}}</div>
+                </div>
+            </div>
+            <div class="formularios_admin oculto segundo_hijo">
+                <div><h4>Artículo:</h4>{{=agregar.custom.widget.articulo}}</div>
+                <div><h4>Plural</h4>{{=agregar.custom.widget.plural}}</div>
+                <div><h4>Imagen</h4>{{=agregar.custom.widget.imagen}}</div>
+            </div>
+            <div class="formularios_admin oculto2 segundo_hijo">
+                <div class="bloque bloque1"> <!-- bloque para las propiedades del verbo -->
+                    <div><h4>Participio II</h4>{{=agregar.custom.widget.participio2}}</div>
+                    <div><h4>Irregular</h4>{{=agregar.custom.widget.verbo_irregular}}</div>
+                    <div><h4>Reflexivo</h4>{{=agregar.custom.widget.reflexivo}}</div>
+                </div>
+                <div class="bloque bloque2"> <!-- bloque para la conjugacion del verbo -->
+                    <div><h4>Ich</h4>{{=agregar.custom.widget.presente_1}}</div>
+                    <div><h4>Du</h4>{{=agregar.custom.widget.presente_2}}</div>
+                    <div><h4>Er, sie, es</h4>{{=agregar.custom.widget.presente_3}}</div>
+                    <div><h4>Wir</h4>{{=agregar.custom.widget.presente_1_p}}</div>
+                    <div><h4>Ihr</h4>{{=agregar.custom.widget.presente_2_p}}</div>
+                    <div><h4>Sie</h4>{{=agregar.custom.widget.presente_3_p}}</div>
+                </div>
+            </div>
+             <div class="formularios_admin oculto3 segundo_hijo">
+                <div><h4>Glosario:</h4>{{=agregar.custom.widget.glosario}}</div>
+            </div>
+            <div class="formularios_admin">
+                <div id="enviar_agregar">{{=agregar.custom.submit}}</div>
+            </div>
+            {{=agregar.custom.end}}
+        </div>
+        </div>

@@ -1,0 +1,257 @@
+timestamp: 2012-02-10T22:44:12.771000
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2012-02-10T22:44:12.960000
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-02-10T22:44:13.074000
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-02-10T22:44:13.217000
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2012-02-10T22:44:13.359000
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-02-10T22:44:13.479000
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2012-02-11T14:09:50.095000
+CREATE TABLE worte(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    wort CHAR(512) UNIQUE
+);
+success!
+timestamp: 2012-02-12T21:40:17.023000
+CREATE TABLE beispiele(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    beispiele_de TEXT,
+    beispiele_es TEXT
+);
+success!
+timestamp: 2012-02-16T22:56:18.807000
+ALTER TABLE beispiele ADD beispiel_de TEXT;
+timestamp: 2012-02-16T22:56:18.934000
+ALTER TABLE beispiele ADD beispiel_es TEXT;
+timestamp: 2012-02-18T13:49:59.553000
+CREATE TABLE product(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    colors TEXT
+);
+success!
+timestamp: 2012-02-18T14:08:21.304000
+CREATE TABLE worte_beispiele(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    worte INTEGER REFERENCES worte(id) ON DELETE CASCADE,
+    beispiele INTEGER REFERENCES beispiele(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-02-18T14:55:02.584000
+ALTER TABLE beispiele ADD beispielde CHAR(512);
+timestamp: 2012-02-18T23:29:58.351000
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2012-02-18T23:29:58.452000
+ALTER TABLE product ADD category CHAR(512);
+timestamp: 2012-02-19T23:23:26.427000
+CREATE TABLE palabras(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    palabra CHAR(512) UNIQUE
+);
+success!
+timestamp: 2012-02-19T23:23:26.590000
+CREATE TABLE ejemplos(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ejemplo_de TEXT,
+    ejemplo_es TEXT
+);
+success!
+timestamp: 2012-02-19T23:23:26.739000
+CREATE TABLE palabra_ejemplo(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    palabra CHAR(512),
+    ejemplo CHAR(512)
+);
+success!
+timestamp: 2012-02-19T23:47:25.216000
+ALTER TABLE palabra_ejemplo ADD ejemplo_de CHAR(512);
+timestamp: 2012-02-21T22:06:34.961000
+CREATE TABLE fuentes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre CHAR(512)
+);
+success!
+timestamp: 2012-02-21T22:06:35.111000
+ALTER TABLE ejemplos ADD fuentes INTEGER REFERENCES fuentes(id) ON DELETE CASCADE;
+timestamp: 2012-02-21T22:39:18.383000
+ALTER TABLE ejemplos ADD fuente INTEGER REFERENCES fuentes(id) ON DELETE CASCADE;
+timestamp: 2012-02-23T00:06:29.061000
+ALTER TABLE palabras ADD sustantivo CHAR(1);
+timestamp: 2012-02-23T16:48:24.310000
+ALTER TABLE palabras ADD articulo CHAR(512);
+timestamp: 2012-02-23T16:51:40.424000
+ALTER TABLE palabras ADD imagen CHAR(512);
+timestamp: 2012-02-23T16:51:40.548000
+ALTER TABLE palabras ADD plural CHAR(512);
+timestamp: 2012-02-23T17:05:25.376000
+CREATE TABLE taxpayer(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512),
+    married CHAR(1),
+    spouse_name CHAR(512)
+);
+success!
+timestamp: 2012-02-23T22:55:21.679000
+ALTER TABLE palabras ADD verbo CHAR(512);
+timestamp: 2012-02-23T22:55:21.824000
+ALTER TABLE palabras ADD participio2 CHAR(512);
+timestamp: 2012-02-24T00:26:43.498000
+ALTER TABLE palabras ADD adjetivo CHAR(1);
+timestamp: 2012-02-24T00:26:43.619000
+ALTER TABLE palabras ADD adverbio CHAR(1);
+timestamp: 2012-02-26T16:45:27.861000
+CREATE TABLE busqueda(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    buscar_palabra CHAR(512)
+);
+success!
+timestamp: 2012-03-02T01:16:46.453000
+CREATE TABLE glosario(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre_glosario CHAR(512) UNIQUE,
+    descripcion_glosario CHAR(512)
+);
+success!
+timestamp: 2012-03-02T01:16:46.619000
+ALTER TABLE palabras ADD glosario INTEGER REFERENCES glosario(id) ON DELETE CASCADE;
+timestamp: 2012-03-02T01:37:37.984000
+ALTER TABLE palabras ADD anadir_glosario CHAR(1);
+timestamp: 2012-03-02T22:59:39.572000
+CREATE TABLE autocompletar_palabra(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    palabra CHAR(512)
+);
+success!
+timestamp: 2012-03-03T00:36:17.642000
+ALTER TABLE autocompletar_palabra ADD palabra_relacionar CHAR(512);
+timestamp: 2012-03-06T13:35:33.759000
+ALTER TABLE palabras ADD presente_1_p CHAR(512);
+timestamp: 2012-03-06T13:35:33.862000
+ALTER TABLE palabras ADD presente_1 CHAR(512);
+timestamp: 2012-03-06T13:35:34.006000
+ALTER TABLE palabras ADD presente_2 CHAR(512);
+timestamp: 2012-03-06T13:35:34.147000
+ALTER TABLE palabras ADD presente_3_p CHAR(512);
+timestamp: 2012-03-06T13:35:34.381000
+ALTER TABLE palabras ADD presente_2_p CHAR(512);
+timestamp: 2012-03-06T13:35:34.553000
+ALTER TABLE palabras ADD verbo_irregular CHAR(1);
+timestamp: 2012-03-06T13:35:34.698000
+ALTER TABLE palabras ADD presente_3 CHAR(512);
+timestamp: 2012-03-06T14:38:21.441000
+ALTER TABLE palabras ADD reflexivo CHAR(1);
+timestamp: 2012-03-10T02:20:23.819000
+ALTER TABLE palabras ADD genero CHAR(512);
+timestamp: 2012-03-12T13:30:54.041000
+ALTER TABLE ejemplos ADD tipo CHAR(512);
+timestamp: 2012-03-12T18:57:12.462000
+ALTER TABLE ejemplos ADD adjetivo CHAR(1);
+timestamp: 2012-03-12T18:57:12.613000
+ALTER TABLE ejemplos ADD sustantivo CHAR(1);
+timestamp: 2012-03-12T18:57:12.737000
+ALTER TABLE ejemplos ADD verbo CHAR(1);
+timestamp: 2012-03-12T18:57:12.825000
+ALTER TABLE ejemplos ADD adverbio CHAR(1);
+timestamp: 2012-03-12T18:57:12.968000
+ALTER TABLE ejemplos ADD preposicion CHAR(1);
+timestamp: 2012-03-20T22:48:02.956000
+CREATE TABLE busqueda_front(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    buscar_palabra CHAR(512)
+);
+success!
+timestamp: 2012-03-20T23:49:02.797000
+CREATE TABLE glosarios(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre_glosario CHAR(512),
+    descripcion_glosario CHAR(512)
+);
+success!
+timestamp: 2012-03-21T00:11:52.180000
+CREATE TABLE Tag(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name CHAR(512) UNIQUE
+);
+success!
+timestamp: 2012-03-21T00:13:16.790000
+CREATE TABLE Image(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nom CHAR(512),
+    Date_Creation DATE,
+    Tag TEXT
+);
+success!
+timestamp: 2012-03-25T12:30:24.305000
+CREATE TABLE preposiciones(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    preposicion CHAR(512),
+    clase CHAR(512)
+);
+success!
+timestamp: 2012-03-26T23:37:25.138000
+ALTER TABLE palabras ADD sein CHAR(1);
+timestamp: 2012-03-27T23:13:08.879000
+ALTER TABLE palabras ADD pasado_3 CHAR(512);
+timestamp: 2012-03-27T23:13:09.027000
+ALTER TABLE palabras ADD pasado_2 CHAR(512);
+timestamp: 2012-03-27T23:13:09.162000
+ALTER TABLE palabras ADD pasado_1 CHAR(512);
+timestamp: 2012-03-27T23:13:09.261000
+ALTER TABLE palabras ADD pasado_3_p CHAR(512);
+timestamp: 2012-03-27T23:13:09.344000
+ALTER TABLE palabras ADD pasado_2_p CHAR(512);
+timestamp: 2012-03-27T23:13:09.461000
+ALTER TABLE palabras ADD pasado_1_p CHAR(512);
+timestamp: 2012-04-01T23:19:08.694000
+ALTER TABLE ejemplos ADD revisar CHAR(1);

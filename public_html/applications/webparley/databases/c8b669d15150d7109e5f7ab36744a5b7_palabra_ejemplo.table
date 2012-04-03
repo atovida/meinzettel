@@ -1,0 +1,52 @@
+(dp1
+S'ejemplo_de'
+p2
+(dp3
+S'type'
+p4
+S'string'
+p5
+sS'sortable'
+p6
+I3
+sS'sql'
+p7
+S'CHAR(512)'
+p8
+ssS'id'
+p9
+(dp10
+S'type'
+p11
+S'id'
+p12
+sS'sortable'
+p13
+I1
+sS'sql'
+p14
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p15
+ssS'palabra'
+p16
+(dp17
+g11
+S'reference palabras'
+p18
+sg13
+I2
+sg14
+S'INTEGER REFERENCES palabras(id) ON DELETE CASCADE'
+p19
+ssS'ejemplo'
+p20
+(dp21
+g11
+S'reference ejemplos'
+p22
+sg13
+I3
+sg14
+S'INTEGER REFERENCES ejemplos(id) ON DELETE CASCADE'
+p23
+ss.

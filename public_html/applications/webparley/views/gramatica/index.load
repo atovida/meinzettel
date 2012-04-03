@@ -1,0 +1,4 @@
+<h1>Esta es la plantilla gramatica/index.html</h1>
+{{=A('Enlace a pagina 2', _href=URL('gramatica', 'enlace2'), cid=request.cid)}}
+
+

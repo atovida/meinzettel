@@ -1,0 +1,3 @@
+{{extend 'layout.html'}}
+<h1>Agregar Genero</h1>
+{{=agregar}}

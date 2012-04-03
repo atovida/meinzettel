@@ -1,0 +1,16 @@
+{{extend 'admin.html'}}
+
+    <div class="modal fade" id="buscar_ejemplos">
+    <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>{{=request.vars.a}}</h3><p> ha sido ingresado en la BD</p>
+    </div>
+    <div class="modal-body">
+    <h4>Buscar si existen ejemplo en la BD</h4>
+    <p>{{#=response.toolbar()}}</p>
+    </div>
+    <div class="modal-footer">
+        {{=A('Si', _href=URL('buscar_ejemplos2', vars=dict(b=request.vars.a)), _class="btn btn-primary")}}
+        {{=A('No', _href=URL('index', vars=dict(b=request.vars.a)), _class="btn")}}
+    </div>
+    </div>

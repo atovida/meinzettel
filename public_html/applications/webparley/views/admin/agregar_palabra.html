@@ -1,0 +1,98 @@
+{{extend 'admin.html'}}
+
+    <div class="principal_admin"> 
+        <h3><i></i>Agregar Palabra</h3>
+        <div class="wellparley"> <!--INICIO bloque formulario -->
+            {{=agregar.custom.begin}}
+            
+            <div class="estilo_grupo1">
+                <h5>Palabra:</h5>
+                <div>{{=agregar.custom.widget.palabra}}</div>
+            </div>    
+            <div  class="barra-lateral">
+                <h5>Clase palabra</h5>
+                <div><label>Sustantivo</label>{{=agregar.custom.widget.sustantivo}}</div>
+                <div><label>Verbo</label>{{=agregar.custom.widget.verbo}}</div>
+                <div><label>Adverbio</label>{{=agregar.custom.widget.adverbio}}</div>
+                <div><label>Adjetivo</label>{{=agregar.custom.widget.adjetivo}}</div>
+                <h5>Glosario</h5>
+                <div><label>Agregar</label>{{=agregar.custom.widget.anadir_glosario}}</div>
+            </div>
+             
+            <div class="oculto estilo_grupo1">
+                <h5>Propiedades palabra</h5>
+                <div><label>Artículo:</label>{{=agregar.custom.widget.articulo}}</div>
+                <div><label>Plural</label>{{=agregar.custom.widget.plural}}</div>
+                <div><label>Imagen</label>{{=agregar.custom.widget.imagen}}</div>
+            </div>
+            <div class="oculto2 estilo_grupo1">
+                <h5>Propiedades verbos</h5>
+                <div><label>Irregular</label>{{=agregar.custom.widget.verbo_irregular}}</div>
+                <div><label>Reflexivo</label>{{=agregar.custom.widget.reflexivo}}</div>
+                <div><label>Participio con sein</label>{{=agregar.custom.widget.sein}}</div>
+            </div>
+            <div class="oculto2 estilo_grupo1">
+                <div class="estilo_conjugacion">
+                    <h5>Participio</h5>
+                    <div><label>Participio II</label>{{=agregar.custom.widget.participio2}}</div>
+                </div>
+                <div class="estilo_conjugacion"> <!-- bloque para la conjugacion del verbo -->
+                    <h5>Presente</h5>
+                    <div><label>Ich</label>{{=agregar.custom.widget.presente_1}}</div>
+                    <div><label>Du</label>{{=agregar.custom.widget.presente_2}}</div>
+                    <div><label>Er, sie, es</label>{{=agregar.custom.widget.presente_3}}</div>
+                    <div><label>Wir</label>{{=agregar.custom.widget.presente_1_p}}</div>
+                    <div><label>Ihr</label>{{=agregar.custom.widget.presente_2_p}}</div>
+                    <div><label>Sie</label>{{=agregar.custom.widget.presente_3_p}}</div>
+                </div>
+                <div class="estilo_conjugacion"> <!-- bloque para la conjugacion del verbo -->
+                    <h5>Pasado</h5>
+                    <div><label>Ich</label>{{=agregar.custom.widget.pasado_1}}</div>
+                    <div><label>Du</label>{{=agregar.custom.widget.pasado_2}}</div>
+                    <div><label>Er, sie, es</label>{{=agregar.custom.widget.pasado_3}}</div>
+                    <div><label>Wir</label>{{=agregar.custom.widget.pasado_1_p}}</div>
+                    <div><label>Ihr</label>{{=agregar.custom.widget.pasado_2_p}}</div>
+                    <div><label>Sie</label>{{=agregar.custom.widget.pasado_3_p}}</div>
+                </div>
+            </div>
+             <div class="oculto3 estilo_grupo1">
+                <h5>Glosario:</h5>
+                <div>{{=agregar.custom.widget.glosario}}</div>
+            </div>
+            
+                <div class="enviar_agregar">{{=agregar.custom.submit}}</div>
+            
+            {{=agregar.custom.end}}
+        </div>  <!--FIN bloque formulario -->
+        
+        <h3>Ultimas palabras</h3> <!--INICIO tabla ultimas palabras -->
+        <div class="wellparley">  <!-- wellparley2 Inicio -->           
+            <table class="table table-striped table-bordered" id="pa">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Palabra</th>
+                        <th>Opciones</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    {{for i in consulta:}}
+                    <tr>
+                        <td><span class="label label-info">{{=i.id}}</span></td>
+                        <td><p>{{=A(T(i.palabra), _href=URL('default','mostrar', args=i.id))}}<p></td>
+                        <td><a data-toggle="modal" href={{=URL('editar_palabra', args=i.id)}}><i class="icon-pencil"></i><span>Editar</span></a>
+                        <a data-toggle="modal"  href={{=URL('borrar_palabra', args=i.id)}}><i class="icon-trash"></i><span>Borrar</span></a>
+                        <a data-toggle="modal"  href={{=URL('relacionar_ejemplo', args=i.id)}}><i class="icon-plus-sign"></i><span>Relacionar ejemplo</span></a>
+                        </td>
+                    </tr>
+                    {{pass}}
+                </tbody>
+            </table>
+            
+{{#=response.toolbar()}}
+
+        </div>  <!-- wellparley2 fin --> <!--FIN tabla ultimas palabras -->
+    </div>      
+ 
+<!--Bloque de script JQUERY -->   

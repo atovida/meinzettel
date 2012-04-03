@@ -1,0 +1,45 @@
+{{extend 'admin.html'}}
+
+
+    <div class="principal_admin">
+        <h3><i></i>Agregar fuente</h3>
+        <div class="wellparley">
+            <div class="wellparley">
+                <div class="estilo_grupo1">
+                    <h5>Fuente</h5>
+                    {{=agregar_fuente.custom.begin}}
+                    {{=agregar_fuente.custom.widget.nombre}}
+                </div>
+                <div class="enviar_agregar">{{=agregar_fuente.custom.submit}}</div>
+                {{=agregar_fuente.custom.end}}
+            </div>
+      </div>
+        
+      <h3><i></i>Ultimas fuentes agregadas</h3>
+      <div class="wellparley">
+        <table class="table table-striped table-bordered" id="pa">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fuente</th>
+                    <th>Opciones</th>
+                    <th>Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{for i in consulta:}}
+                <tr>
+                    <td><span class="label label-info">{{=i.id}}</span></td>
+                    <td><p>{{=i.nombre}}<p></td>
+                    <td><a data-toggle="modal" href={{=URL('editar_fuente', args=i.id)}}><i class="icon-pencil"></i>Editar</a>
+                    <a data-toggle="modal"  href={{=URL('borrar_fuente', args=i.id)}}><i class="icon-trash"></i>Borrar</a>
+                    <!--<a data-toggle="modal"  href={{=URL('#', args=i.id)}}><i class="icon-plus-sign"></i>Relacionar ejemplo</a>-->
+                    </td>
+                </tr>
+                {{pass}}
+            </tbody>
+        </table>
+      </div>
+  </div>  
+{{#=response.toolbar()}}
+

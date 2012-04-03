@@ -1,0 +1,37 @@
+{{extend 'admin.html'}}
+    <div class="opciones"> 
+        <h3>Ejemplos con <span class="palabra_destacada">{{=request.vars.b}}</span></h3>
+        <div class="wellparley">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <th>Ejemplos</th>
+                    <th>relacionar</th>
+                </thead>
+                <tbody>
+                     <form enctype="multipart/form-data" action={{=URL('relacionar')}} method="post">   
+                     {{for r in buscar:}}
+                    <tr>
+                        <td>{{=r.ejemplo_de}}</td>
+                        <td><input name="relacionar" type="checkbox" value={{=r.id}} /></td>
+                        
+                    </tr>
+                    {{pass}}
+                    <tr>
+                        <td><input name="relacionar" type="hidden" value=0 /></td>
+                        <input class="btn btn-primary" name="id_palabra" type="hidden" value={{=id.id}} />
+                        <td><input class="btn btn-primary" type="submit" value="Relacionar" /></td>
+                        
+                    </tr>
+                     
+                     </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+{{#=buscar}}
+{{#=request.raw_args}}

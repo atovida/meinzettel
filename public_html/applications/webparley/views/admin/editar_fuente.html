@@ -1,0 +1,14 @@
+{{extend 'admin.html'}}
+    
+     <div class="modal fade modal" id="editar-fuente">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3>Editar</h3>
+        </div>
+        <div class="modal-body">
+            {{=form}}
+        </div>
+        <div class="modal-footer">
+        <a href={{=URL('agregar_fuente','index')}} class="btn">Salir</a>
+        </div>
+        </div>

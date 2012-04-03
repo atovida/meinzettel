@@ -1,0 +1,593 @@
+{{extend 'layout.html'}}
+
+   {{if palabras:}}                                                             <!-- INICIO IF PALABRAS -->
+   
+        
+        
+       <h3 class="h3_redondo">{{=palabras.palabra.capitalize()}}</h3>
+       
+                                                                                
+       
+        {{if palabras.sustantivo==True and palabras.verbo==True:}}  <!-- 1 --> <!-- SI LA PALABRA ES UN VERBO Y SUSTANTIVO A LA VEZ -->
+            <div class="btn-group botones_mostrar" data-toggle="buttons-checkbox">
+               <!-- <button class="btn btn-info " onclick='$("#toggle1-mostrar").slideToggle(200);'>Mostrar como sustantivo</button> -->
+                <button class="btn btn-info toggle-mostrar-verbo">
+                    <span class="mostrar-verbo"><i class="icon-plus-sign icon-white"></i> Mostrar verbo</span>
+                    <span class="ocultar-verbo hide"><i class="icon-minus-sign icon-white"></i> Ocultar</span>
+                </button>
+                <!--<button class="btn btn-info">Ambos</button> -->
+                <button class="btn btn-info toggle-mostrar-sustantivo">
+                    <span class="mostrar-sustantivo"><i class="icon-plus-sign icon-white"></i> Mostrar sustantivo</span>
+                    <span class="ocultar-sustantivo hide"><i class="icon-minus-sign icon-white"></i> Ocultar</span>
+                </button>
+            </div>
+            <div id="toggle-mostrar-verbo" class="hide">                            <!-- INICIO DIV OCULTO PARA MOSTRAR EL VERBO -->
+                <div class="toggle-mostrar">
+                    <h4>Verbo</h4>
+                    <a href="#" class="float_right img2 tip"  rel="tooltip" id="mostrar-tip2" title="Conjugacion"><i class="icon-th-list icon-white"></i></a>
+                    <a href="#" class="float_right img2 tip" id="ocultar-tip2"  rel="tooltip" title="Ocultar"><i class="icon-th-list icon-white"></i></a>
+                </div>
+            <div class="wellparley2">
+                <div class="conjugacion hide">
+                    {{if palabras.verbo==True:}}
+                        <table class="table table-striped table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                <th>Participios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Participio II</td>
+                                    <td>{{=palabras.participio2.capitalize()}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <table class="table table-striped table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                <th>Presente</th>
+                                </tr>
+                            </thead>
+                            {{if palabras.presente_1=='':}}
+                                <tbody>
+                                    <tr>
+                                        <td>No hay conjugacion</td>
+                                    </tr>
+                                </tbody>
+                            {{else:}}
+                                <tbody>
+                                    <tr>
+                                        <td>Ich</td>
+                                        <td>{{=palabras.presente_1.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Du</td>
+                                        <td>{{=palabras.presente_2.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Er, sie, es</td>
+                                        <td>{{=palabras.presente_3.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wir</td>
+                                        <td>{{=palabras.presente_1_p.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ihr</td>
+                                        <td>{{=palabras.presente_2_p.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sie</td>
+                                        <td>{{=palabras.presente_3_p.capitalize()}}</td>
+                                    </tr>
+                                </tbody>
+                            {{pass}}
+                        </table>
+                    {{else:}}
+                        <p>Conjugación no disponible</p>
+                    {{pass}}
+                </div>
+                     {{if ejemplos(db.ejemplos.verbo==True).select():}}
+                    <h4 class="h4-mostrar">Ejemplos</h4>
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                                <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                                <th>Fuente</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            {{for registro in ejemplos(db.ejemplos.verbo==True).select(db.ejemplos.ALL):}}
+                              
+                            <tr>
+                                <td>
+                                    {{=registro.ejemplo_de}}
+                                </td>
+                                <td>
+                                    {{=registro.ejemplo_es}}
+                                   
+                                </td>
+                                   
+                                <td>
+                                     {{if registro.fuente:}}
+                                        {{=registro.fuente.nombre}}
+                                    {{pass}}
+                                </td>
+                            </tr>
+                            {{pass}}
+                        </tbody>
+                    </table>
+                    {{else:}}
+                    <p>No hay ejemplos</p>
+                    {{pass}}
+                    
+                </div>
+            </div>                                                                  <!-- FIN DIV OCULTO PARA MOSTRAR EL VERBO -->
+        
+        
+            <div id="toggle-mostrar-sustantivo" class="hide">                       <!-- INICIO DIV OCULTO PARA MOSTRAR EL SUSTANTIVO -->
+                <div class="toggle-mostrar">
+                    <h4>Sustantivo</h4>
+                    <a href="#" class="tip" rel="tooltip" {{if palabras.articulo=='Die':}}
+                                                                title="Femenino"
+                                                            {{elif palabras.articulo=='Der':}}
+                                                                title="Masculino"
+                                                            {{elif palabras.articulo=='Das':}}
+                                                                title="Neutro"
+                                                            {{else:}}
+                                                                title="No hay"
+                                                            {{pass}}
+                        >{{=palabras.articulo.capitalize()}}
+                    </a>
+                    <span>{{=palabras.palabra.capitalize()}}</span>
+                    <span>-</span>
+                    <a href="#" class="tip" rel="tooltip" title="Plural">({{=palabras.plural}})</a>
+                    <a href="#" class="float_right tip img ocultar-tip"  rel="tooltip" title="Mostrar"><i class="icon-camera icon-white"></i></a>
+                    <a href="#" class="float_right tip img mostrar-tip" id="ocultar-tip" rel="tooltip" title="Ocultar"><i class="icon-camera icon-white"></i></a>
+                </div>
+                <div class="wellparley2">
+                    <div id="imagen-sustantivo" class="hide"> 
+                        {{if not palabras.imagen:}}
+                            <p>No hay imagen</p>
+                        {{else:}}
+                            <img class="img-sustantivo" src="{{=URL('download', args=palabras.imagen)}}" />
+                        {{pass}}
+                    </div>
+                    {{if ejemplos.select():}}
+                        <h4 class="h4-mostrar">Ejemplos</h4>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                                    <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                                    <th>Fuente</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{for registro in ejemplos(db.ejemplos.sustantivo==True).select(db.ejemplos.ALL):}}
+                                <tr>
+                                    <td>
+                                        {{=registro.ejemplo_de}}
+                                    </td>
+                                    <td>
+                                        {{=registro.ejemplo_es}}
+                                    </td>
+                                       
+                                    <td>
+                                         {{if registro.fuente:}}
+                                            {{=registro.fuente.nombre}}
+                                        {{pass}}
+                                    </td>
+                                </tr>
+                                {{pass}}
+                            </tbody>
+                        </table>
+                     {{else:}}
+                        <p>No hay ejemplos</p>
+                    {{pass}}
+                </div>
+            </div>                                                                  <!-- FIN DIV OCULTO PARA MOSTRAR EL SUSTANTIVO -->
+                                                                           <!-- FIN SI LA PALABRA ES UN SUSTANTIVO Y VERBO A LA VEZ -->
+                                                                               
+                        
+                                                                                
+        
+        {{elif palabras.sustantivo==True:}} <!-- 2 -->                           <!-- SI LA PALABRA ES SOLO UN SUSTANTIVO -->
+            <div class="toggle-mostrar">
+                <h4>Sustantivo</h4>
+                <a href="#" class="tip" rel="tooltip" {{if palabras.articulo=='Die':}}
+                                                            title="Femenino"
+                                                        {{elif palabras.articulo=='Der':}}
+                                                            title="Masculino"
+                                                        {{elif palabras.articulo=='Das':}}
+                                                            title="Neutro"
+                                                        {{else:}}
+                                                            title="No hay"
+                                                        {{pass}}>
+                    {{=palabras.articulo.capitalize()}}
+                </a>
+                <span>{{=palabras.palabra.capitalize()}}</span>
+                <span>-</span>
+                <a href="#" class="tip" rel="tooltip" title="Plural">({{=palabras.plural}})</a>
+                <a href="#" class="float_right tip img ocultar-tip"  rel="tooltip" title="Mostrar"><i class="icon-camera icon-white"></i></a>
+                <a href="#" class="float_right tip img mostrar-tip" id="ocultar-tip" rel="tooltip" title="Ocultar"><i class="icon-camera icon-white"></i></a>
+            </div>
+            <div class="wellparley2">
+                <div id="imagen-sustantivo" class="hide"> 
+                    {{if not palabras.imagen:}}
+                        <p>No hay imagen</p>
+                    {{else:}}
+                        <img class="img-sustantivo" src="{{=URL('download', args=palabras.imagen)}}" />
+                    {{pass}}
+                </div>
+                {{if ejemplos.select():}}
+                <h4 class="h4-mostrar">Ejemplos</h4>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <thead>
+                        <tr>
+                            <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                            <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                            <th>Fuente</th>
+                        </tr>
+                    </thead>
+                          {{for registro in ejemplos(db.ejemplos.sustantivo==True).select(db.ejemplos.ALL):}}
+                        <tr>
+                            <td>
+                                {{=registro.ejemplo_de}}
+                            </td>
+                            <td>
+                                {{=registro.ejemplo_es}}
+                            </td>
+                               
+                            <td>
+                                 {{if registro.fuente:}}
+                                    {{=registro.fuente.nombre}}
+                                {{pass}}
+                            </td>
+                        </tr>
+                        {{pass}}
+                    </tbody>
+                </table>
+                {{else:}}
+                    <p>No hay ejemplos</p>
+                {{pass}}
+            </div>
+            
+        {{elif palabras.adjetivo==True and palabras.adverbio==True:}}           <!-- SI LA PALABRAS ES UN ADJETIVO Y UN ADVERBIO -->
+            <div class="btn-group botones_mostrar" data-toggle="buttons-checkbox">
+           <!-- <button class="btn btn-info " onclick='$("#toggle1-mostrar").slideToggle(200);'>Mostrar como sustantivo</button> -->
+            <button class="btn btn-info toggle-mostrar-verbo">
+                <span class="mostrar-verbo"><i class="icon-plus-sign icon-white"></i> Mostrar Adverbio</span>
+                <span class="ocultar-verbo hide"><i class="icon-minus-sign icon-white"></i> Ocultar</span>
+            </button>
+            <!--<button class="btn btn-info">Ambos</button> -->
+            <button class="btn btn-info toggle-mostrar-sustantivo">
+                <span class="mostrar-sustantivo"><i class="icon-plus-sign icon-white"></i> Mostrar Adjetivo</span>
+                <span class="ocultar-sustantivo hide"><i class="icon-minus-sign icon-white"></i> Ocultar</span>
+            </button>
+        </div>
+        <div id="toggle-mostrar-verbo" class="hide">                            <!-- INICIO DIV OCULTO PARA MOSTRAR EL ADVERBIO -->
+            <div class="toggle-mostrar"><h4>Adverbio</h4></div>
+            <div class="wellparley2">
+                {{if ejemplos.select():}}
+                <h4 class="h4-mostrar">Ejemplos</h4>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                            <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                            <th>Fuente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{for registro in ejemplos(db.ejemplos.adverbio==True).select(db.ejemplos.ALL):}}
+                        <tr>
+                            <td>
+                                {{=registro.ejemplo_de}}
+                            </td>
+                            <td>
+                                {{=registro.ejemplo_es}}
+                            </td>
+                               
+                            <td>
+                                 {{if registro.fuente:}}
+                                    {{=registro.fuente.nombre}}
+                                {{pass}}
+                            </td>
+                        </tr>
+                        {{pass}}
+                    </tbody>
+                </table>
+                {{else:}}
+                    <p>No hay ejemplos</p>
+                {{pass}}
+            </div>
+        </div>                                                                  <!-- FIN DIV OCULTO PARA MOSTRAR EL ADVERBIO -->
+        
+        
+        <div id="toggle-mostrar-sustantivo" class="hide">                       <!-- INICIO DIV OCULTO PARA MOSTRAR EL ADJETIVO -->
+            <div class="toggle-mostrar">
+                <h4>Adjetivo</h4>
+            </div>
+            <div class="wellparley2">
+                {{if ejemplos.select():}}
+                <h4 class="h4-mostrar">Ejemplos</h4>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                            <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                            <th>Fuente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{for registro in ejemplos(db.ejemplos.adjetivo==True).select(db.ejemplos.ALL):}}
+                        <tr>
+                            <td>{{if registro.ejemplo_de:}}
+                                {{=registro.ejemplo_de}}
+                                {{else:}}
+                                <p>No hay ejemplo_de</p>
+                                {{pass}}
+                            </td>
+                            <td>
+                                {{=registro.ejemplo_es}}
+                            </td>
+                               
+                            <td>
+                                 {{if registro.fuente:}}
+                                    {{=registro.fuente.nombre}}
+                                {{pass}}
+                            </td>
+                        </tr>
+                        {{pass}}
+                    </tbody>
+                </table>
+                {{else:}}
+                    <p>No hay ejemplos</p>
+                {{pass}}
+            </div>
+        </div>                                                                  <!-- FIN DIV OCULTO PARA MOSTRAR EL ADJETIVO -->
+        
+                                                                                <!-- FIN SI LA PALABRA ES UN ADVERVIO Y ADJETIVO -->
+            
+        {{elif palabras.adjetivo==True:}}                                       <!-- SI LA PALABRAS ES UN ADJETIVO  -->
+            <div class="toggle-mostrar">
+                <h4>Adjetivo</h4>
+            </div>
+            <div class="wellparley2">
+                {{if ejemplos.select():}}
+                <h4 class="h4-mostrar">Ejemplos</h4>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <thead>
+                        <tr>
+                            <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                            <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                            <th>Fuente</th>
+                        </tr>
+                    </thead>
+                          {{for registro in ejemplos(db.ejemplos.adjetivo==True).select(db.ejemplos.ALL):}}
+                        <tr>
+                            <td>{{if registro.ejemplo_de:}}
+                                {{=registro.ejemplo_de}}
+                                {{else:}}
+                                <p>No hay ejemplo_de</p>
+                                {{pass}}
+                            </td>
+                            <td>
+                                {{=registro.ejemplo_es}}
+                            </td>
+                               
+                            <td>
+                                {{if registro.fuente:}}
+                                    {{=registro.fuente.nombre}}
+                                {{pass}}
+                            </td>
+                        </tr>
+                        {{pass}}
+                    </tbody>
+                </table>
+                {{else:}}
+                    <p>No hay ejemplos</p>
+                {{pass}}
+            </div>
+        
+        {{elif palabras.adjetivo==True:}}                                        <!-- SI LA PALABRAS ES UN ADJETIVO  -->
+            <div class="toggle-mostrar">
+                <h4>Adjetivo</h4>
+            </div>
+            <div class="wellparley2">
+                {{if ejemplos.select():}}
+                <h4 class="h4-mostrar">Ejemplos</h4>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <thead>
+                        <tr>
+                            <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                            <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                            <th>Fuente</th>
+                        </tr>
+                    </thead>
+                          {{for registro in ejemplos(db.ejemplos.adjetivo==True).select(db.ejemplos.ALL):}}
+                        <tr>
+                            <td>{{if registro.ejemplo_de:}}
+                                {{=registro.ejemplo_de}}
+                                {{else:}}
+                                <p>No hay ejemplo_de</p>
+                                {{pass}}
+                            </td>
+                            <td>
+                                {{=registro.ejemplo_es}}
+                            </td>
+                               
+                            <td>
+                                {{if registro.fuente:}}
+                                    {{=registro.fuente.nombre}}
+                                {{pass}}
+                            </td>
+                        </tr>
+                        {{pass}}
+                    </tbody>
+                </table>
+                {{else:}}
+                    <p>No hay ejemplos</p>
+                {{pass}}
+            </div>  
+        {{#pass}}                                                                <!-- FIN SI LA PALABRAS ES UN ADJETIVO  -->
+            
+        {{elif palabras.adverbio==True:}}                                       <!-- SI LA PALABRAS ES UN ADVERVIO  -->
+            <div class="toggle-mostrar">
+                <h4>Adverbio</h4>
+            </div>
+            <div class="wellparley2">
+                {{if ejemplos.select():}}
+                <h4 class="h4-mostrar">Ejemplos</h4>
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <thead>
+                        <tr>
+                            <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                            <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                            <th>Fuente</th>
+                        </tr>
+                    </thead>
+                          {{for registro in ejemplos(db.ejemplos.adverbio==True).select(db.ejemplos.ALL):}}
+                        <tr>
+                            <td>
+                                {{=registro.ejemplo_de}}
+                            </td>
+                            <td>
+                                {{=registro.ejemplo_es}}
+                            </td>
+                               
+                            <td>
+                                {{if registro.fuente:}}
+                                    {{=registro.fuente.nombre}}
+                                {{pass}}
+                            </td>
+                        </tr>
+                        {{pass}}
+                    </tbody>
+                </table>
+                {{else:}}
+                    <p>No hay ejemplos</p>
+                {{pass}}
+            </div>
+            
+            
+                                                                    <!-- FIN SEGUNDO IF CASOS QUE SE PUEDEN DAR CON LAS PALABRAS -->
+        
+        {{elif palabras.verbo==True:}}
+            <div class="toggle-mostrar">
+                <h4>Verbo</h4>
+                <a href="#" class="float_right img3 tip"  rel="tooltip" id="mostrar-tip3" title="Conjugacion"><i class="icon-th-list icon-white"></i></a>
+                <a href="#" class="float_right img3 tip" id="ocultar-tip3"  rel="tooltip" title="Ocultar"><i class="icon-th-list icon-white"></i></a>
+            </div>
+            <div class="wellparley2">
+                <div class="conjugacion hide">
+                    {{if palabras.verbo==True:}}
+                        <table class="table table-striped table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                <th>Participios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Participio II</td>
+                                    <td>{{=palabras.participio2.capitalize()}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <table class="table table-striped table-bordered table-condensed">
+                            <thead>
+                                <tr>
+                                <th>Presente</th>
+                                </tr>
+                            </thead>
+                            {{if palabras.presente_1=='':}}
+                                <tbody>
+                                    <tr>
+                                        <td>No hay conjugacion</td>
+                                    </tr>
+                                </tbody>
+                            {{else:}}
+                                <tbody>
+                                    <tr>
+                                        <td>Ich</td>
+                                        <td>{{=palabras.presente_1.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Du</td>
+                                        <td>{{=palabras.presente_2.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Er, sie, es</td>
+                                        <td>{{=palabras.presente_3.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wir</td>
+                                        <td>{{=palabras.presente_1_p.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ihr</td>
+                                        <td>{{=palabras.presente_2_p.capitalize()}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sie</td>
+                                        <td>{{=palabras.presente_3_p.capitalize()}}</td>
+                                    </tr>
+                                </tbody>
+                            {{pass}}
+                        </table>
+                    {{else:}}
+                        <p>Conjugación no disponible</p>
+                    {{pass}}
+                </div>
+                 {{if ejemplos.select():}}
+                <h4 class="h4-mostrar">Ejemplos</h4>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>{{=IMG(_src=URL('static', 'images/germany.gif'))}}</th>
+                            <th>{{=IMG(_src=URL('static', 'images/spain.gif'))}}</th>
+                            <th>Fuente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        {{for registro in ejemplos(db.ejemplos.verbo==True).select(db.ejemplos.ALL):}}
+                          
+                        <tr>
+                            <td>
+                                {{=registro.ejemplo_de.capitalize()}}
+                            </td>
+                            <td>
+                                {{=registro.ejemplo_es.capitalize()}}
+                               
+                            </td>
+                               
+                            <td>
+                                 {{if registro.fuente:}}
+                                    {{=registro.fuente.nombre.capitalize()}}
+                                {{pass}}
+                            </td>
+                        </tr>
+                        {{pass}}
+                    </tbody>
+                </table>
+                {{else:}}
+                <p>No hay ejemplos</p>
+                {{pass}}
+                
+            </div>
+        {{pass}}
+        
+    {{pass}}                                                                    <!-- FIN IF PALABRAS -->
+{{#=response.toolbar()}}

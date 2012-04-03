@@ -1,0 +1,39 @@
+{{extend 'admin.html'}}
+
+    <div class="principal_admin">
+        <h3><i></i>Agregar Glosario</h3>
+        <div class="wellparley">
+            <div class="estilo_grupo1">
+                <h5>Glosario</h5>
+                {{=agregar_glosario.custom.begin}}
+                {{=agregar_glosario.custom.widget.nombre_glosario}}
+            </div>
+            <div class="enviar_agregar">{{=agregar_glosario.custom.submit}}</div>
+            {{=agregar_glosario.custom.end}}
+        </div>
+        <div class="wellparley">
+            <h3><i></i>Ultimos Glosarios</h3>
+            <table class="table table-striped table-bordered" id="pa">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Glosario</th>
+                      <th>Opciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {{for i in consulta:}}
+                  <tr>
+                      <td><span class="label label-info">{{=i.id}}</span></td>
+                      <td><p>{{=i.nombre_glosario}}<p></td>
+                      <td><a data-toggle="modal" href={{=URL('editar_glosario', args=i.id)}}><i class="icon-pencil"></i>Editar</a>
+                      <a data-toggle="modal"  href={{=URL('borrar_glsoario', args=i.id)}}><i class="icon-trash"></i>Borrar</a>
+                      <!--<a data-toggle="modal"  href={{=URL('#', args=i.id)}}><i class="icon-plus-sign"></i>Relacionar ejemplo</a>-->
+                      </td>
+                  </tr>
+                  {{pass}}
+              </tbody>
+            </table>
+        </div>
+    </div>  
+    {{#=response.toolbar()}} 

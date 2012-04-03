@@ -1,0 +1,18 @@
+{{extend 'admin.html'}}
+
+    <!-- borrar -->
+        <div class="modal fade modal" id="borrar_fuente">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3>Borrar</h3>
+        </div>
+        <div class="modal-body">
+            <p>Esta seguro que desea borrar el registro</p>
+        </div>
+        <div class="modal-footer">
+        <a href={{=URL('borrar_fuente2', args=request.args(0))}} class="btn btn-primary">Si</a>
+        <a href={{=URL('admin','agregar_fuente')}} class="btn">No</a>
+        </div>
+        </div>
+                       
+    <!-- Fin borrar -->   

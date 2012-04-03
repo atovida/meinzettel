@@ -1,0 +1,200 @@
+(dp1
+S'output'
+p2
+S'missing "pass" in view'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'response.write(\'<!DOCTYPE html>\\n<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->\\n<!--[if lt IE 7]><html class="ie ie6 ie-lte9 ie-lte8 ie-lte7 no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <![endif]-->\\n<!--[if IE 7]><html class="ie ie7 ie-lte9 ie-lte8 ie-lte7 no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <![endif]-->\\n<!--[if IE 8]><html class="ie ie8 ie-lte9 ie-lte8 no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <![endif]-->\\n<!--[if IE 9]><html class="ie9 ie-lte9 no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <![endif]-->\\n<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="\', escape=False)\nresponse.write(T.accepted_language or \'en\')\nresponse.write(\'"> <!--<![endif]-->\\n<head>\\n  <meta charset="utf-8" />\\n  <!-- www.phpied.com/conditional-comments-block-downloads/ -->\\n  <!-- Always force latest IE rendering engine\\n\\t   (even in intranet) & Chrome Frame\\n\\t   Remove this if you use the .htaccess -->\\n  <!--[if IE]>\\n    <meta http-equiv="X-UA-Compatible" content="IE=edge\', escape=False)\nresponse.write(not request.is_local and \',chrome=1\' or \'\')\nresponse.write(\'">\\n  <![endif]-->\\n  \\n  <title>\', escape=False)\nresponse.write(response.title or request.application)\nresponse.write(\'</title>\\n  \\n  <!-- http://dev.w3.org/html5/markup/meta.name.html -->\\n  <meta name="application-name" content="\', escape=False)\nresponse.write(request.application)\nresponse.write(\'" />\\n  \\n  <!-- Speaking of Google, don\\\'t forget to set your site up:\\n\\t   http://google.com/webmasters -->\\n  <meta name="google-site-verification" content="" />\\n\\n  <!--  Mobile Viewport Fix\\n\\t  j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag\\n\\t  device-width: Occupy full width of the screen in its current orientation\\n\\t  initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height\\n\\t  user-scalable = yes allows the user to zoom in -->\\n  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">\\n  \\n  <!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->\\n  <link rel="shortcut icon" href="\', escape=False)\nresponse.write(URL(\'static\',\'favicon.ico\'))\nresponse.write(\'" type="image/x-icon">\\n  <link rel="apple-touch-icon" href="\', escape=False)\nresponse.write(URL(\'static\',\'favicon.png\'))\nresponse.write(\'">\\n\\n  <!-- All JavaScript at the bottom, except for Modernizr which enables \\n\\t   HTML5 elements & feature detects -->\\n  <script src="\', escape=False)\nresponse.write(URL(\'static\',\'js/modernizr.custom.js\'))\nresponse.write(\'"></script>  \\n\\n  <!-- include stylesheets -->\\n  \', escape=False)\nresponse.files.append(URL(\'static\',\'css/bootstrap.css\'))\nresponse.files.append(URL(\'static\',\'js/bootstrap.js\'))\nresponse.files.append(URL(\'static\',\'css/parleyweb.css\'))\nresponse.files.append(URL(\'static\',\'css/jquery-ui-1.8.18.custom.css\'))\nresponse.files.append(URL(\'static\',\'js/parleyweb.js\'))\nresponse.files.append(URL(\'static\',\'js/jquery-ui-1.8.18.custom.min.js\'))\nresponse.write(\'\\n\\n  \', escape=False)\nresponse.write(\'<script type="text/javascript"><!--\\n    // These variables are used by the web2py_ajax_init function in web2py_ajax.js (which is loaded below).\\n    var w2p_ajax_confirm_message = "\', escape=False)\nresponse.write(T(\'Are you sure you want to delete this object?\'))\nresponse.write(\'";\\n    var w2p_ajax_date_format = "\', escape=False)\nresponse.write(T(\'%Y-%m-%d\'))\nresponse.write(\'";\\n    var w2p_ajax_datetime_format = "\', escape=False)\nresponse.write(T(\'%Y-%m-%d %H:%M:%S\'))\nresponse.write(\'";\\n    //--></script>\\n\', escape=False)\nresponse.files.insert(0,URL(\'static\',\'js/jquery.js\'))\nresponse.files.insert(1,URL(\'static\',\'css/calendar.css\'))\nresponse.files.insert(2,URL(\'static\',\'js/calendar.js\'))\nresponse.files.insert(3,URL(\'static\',\'js/web2py.js\'))\nresponse.include_meta()\nresponse.include_files()\nresponse.write(\'\\n\', escape=False)\nresponse.write(\'\\n\\n  \\n\\n  \', escape=False)\n# using sidebars need to know what sidebar you want to use\nleft_sidebar_enabled = globals().get(\'left_sidebar_enabled\',False)\nright_sidebar_enabled = globals().get(\'right_sidebar_enabled\',False)\nmiddle_columns = {0:\'sixteen\',1:\'twelve\',2:\'eight\'}[\n(left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)]\nresponse.write(\'\\n\\n  <!-- uncomment here to load jquery-ui\\n  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" type="text/css" media="all" />\\n  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>\\n  uncomment to load jquery-ui //-->\\n</head>\\n <body>\\n\\n    <div class="navbar navbar-fixed-top">\\n      <div class="navbar-inner">\\n        <div class="container-fluid">\\n          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">\\n            <span class="icon-bar"></span>\\n            <span class="icon-bar"></span>\\n            <span class="icon-bar"></span>\\n          </a>\\n          <a class="brand" href="#">Parleyweb</a>\\n          <div class="nav-collapse">\\n\\t    \', escape=False)\n#=MENU(response.menu, _class="nav active")\nresponse.write(\'\\n            <ul class="nav">\\n              <li>\', escape=False)\nresponse.write(A(T(\'Administracion\'), _href=URL(\'admin\', \'index\')))\nresponse.write(\'</li>\\n            </ul>\\n\\t    \\n            <p class="navbar-text pull-right">\', escape=False)\nresponse.write(\'auth\' in globals() and auth.navbar(separators=(\' \',\' | \',\'\')))\nresponse.write(\'</p>\\n          </div><!--/.nav-collapse -->\\n        </div>\\n      </div>\\n    </div>\\n    <div class="flash alert alert-info"></i>\', escape=False)\nresponse.write(response.flash or \'\')\nresponse.write(\'</div>\\n    <div class="container-fluid">\\n      <div class="row-fluid">\\n        <div class="span3">\\n          <div class="well sidebar-nav">\\n            <ul class="nav nav-list">\\n              <li class="nav-header">\', escape=False)\nresponse.write(T(\'Buscar\'))\nresponse.write(\'</li>\\n            </ul>\\n          </div><!--/.well -->\\n        </div><!--/span-->\\n        <div class="span9">\\n\\t  \', escape=False)\nresponse.write(\'\\n\\t    \', escape=False)\nresponse.write(\'\\n\\n   \', escape=False)\nif palabras:\n    response.write(\'                                                             <!-- INICIO IF PALABRAS -->\\n   \\n        \\n        \\n       <h3 class="h3_redondo">\', escape=False)\n    response.write(palabras.palabra.capitalize())\n    response.write(\'</h3>\\n       \\n                                                                                <!-- SI LA PALABRA ES UN VERBO Y SUSTANTIVO A LA VEZ -->\\n       \\n        \', escape=False)\n    if palabras.sustantivo==True and palabras.verbo==True:\n        response.write(\'  <!-- 1 -->\\n        <div class="btn-group botones_mostrar" data-toggle="buttons-checkbox">\\n           <!-- <button class="btn btn-info " onclick=\\\'$("#toggle1-mostrar").slideToggle(200);\\\'>Mostrar como sustantivo</button> -->\\n            <button class="btn btn-info toggle-mostrar-verbo">\\n                <span class="mostrar-verbo"><i class="icon-plus-sign icon-white"></i> Mostrar verbo</span>\\n                <span class="ocultar-verbo hide"><i class="icon-minus-sign icon-white"></i> Ocultar</span>\\n            </button>\\n            <!--<button class="btn btn-info">Ambos</button> -->\\n            <button class="btn btn-info toggle-mostrar-sustantivo">\\n                <span class="mostrar-sustantivo"><i class="icon-plus-sign icon-white"></i> Mostrar sustantivo</span>\\n                <span class="ocultar-sustantivo hide"><i class="icon-minus-sign icon-white"></i> Ocultar</span>\\n            </button>\\n        </div>\\n        <div id="toggle-mostrar-verbo" class="hide">                            <!-- INICIO DIV OCULTO PARA MOSTRAR EL VERBO -->\\n            <div class="toggle-mostrar"><h4>Verbo</h4></div>\\n            <div class="wellparley2">\\n                <h4 class="h4-mostrar">Ejemplos</h4>\\n                \\n                <table class="table table-striped table-bordered">\\n                    <thead>\\n                        <tr>\\n                            <th>\', escape=False)\n        response.write(IMG(_src=URL(\'static\', \'images/germany.gif\')))\n        response.write(\'</th>\\n                            <th>\', escape=False)\n        response.write(IMG(_src=URL(\'static\', \'images/spain.gif\')))\n        response.write(\'</th>\\n                            <th>Fuente</th>\\n                        </tr>\\n                    </thead>\\n                    <tbody>\\n                       \\n                        \', escape=False)\n        for registro in prueba:\n            response.write(\'\\n                           \\n                        <tr>\\n                            <td>\\n                                \', escape=False)\n            response.write(registro.ejemplo_de)\n            response.write(\'\\n                            </td>\\n                            <td>\\n                                \', escape=False)\n            response.write(registro.ejemplo_es)\n            response.write(\'\\n                               \\n                            </td>\\n                               \\n                            <td>\\n                                 \', escape=False)\n            if registro.fuente:\n                response.write(\'\\n                                    \', escape=False)\n                response.write(registro.fuente.nombre)\n                response.write(\'\\n                                \', escape=False)\n                pass\n            response.write(\'\\n                            </td>\\n                        </tr>\\n                        \', escape=False)\n            #pass\n            response.write(\'\\n                    </tbody>\\n                </table>\\n                \\n            </div>\\n        </div>                                                                  <!-- FIN DIV OCULTO PARA MOSTRAR EL VERBO -->\\n        \\n        \\n        <div id="toggle-mostrar-sustantivo" class="hide">                       <!-- INICIO DIV OCULTO PARA MOSTRAR EL SUSTANTIVO -->\\n            <div class="toggle-mostrar">\\n                <h4>Sustantivo</h4>\\n                <a href="#" class="tip" rel="tooltip" \', escape=False)\n            if palabras.articulo==\'Die\':\n                response.write(\'\\n                                                            title="Femenino"\\n                                                        \', escape=False)\n            elif palabras.articulo==\'Der\':\n                response.write(\'\\n                                                            title="Masculino"\\n                                                        \', escape=False)\n            elif palabras.articulo==\'Das\':\n                response.write(\'\\n                                                            title="Neutro"\\n                                                        \', escape=False)\n            else:\n                response.write(\'\\n                                                            title="No hay"\\n                                                        \', escape=False)\n                pass\n            response.write(\'>\\n                    \', escape=False)\n            response.write(palabras.articulo.capitalize())\n            response.write(\'\\n                </a>\\n                <span>\', escape=False)\n            response.write(palabras.palabra.capitalize())\n            response.write(\'</span>\\n                <span>-</span>\\n                <a href="#" class="tip" rel="tooltip" title="Plural">(\', escape=False)\n            response.write(palabras.plural)\n            response.write(\')</a>\\n                <a href="#" class="float_right tip img ocultar-tip"  rel="tooltip" title="Mostrar"><i class="icon-camera icon-white"></i></a>\\n                <a href="#" class="float_right tip img mostrar-tip" id="ocultar-tip" rel="tooltip" title="Ocultar"><i class="icon-camera icon-white"></i></a>\\n            </div>\\n            <div class="wellparley2">\\n                <div id="imagen-sustantivo" class="hide"> \\n                    \', escape=False)\n            if not palabras.imagen:\n                response.write(\'\\n                        <p>No hay imagen</p>\\n                    \', escape=False)\n            else:\n                response.write(\'\\n                        <img class="img-sustantivo" src="\', escape=False)\n                response.write(URL(\'download\', args=palabras.imagen))\n                response.write(\'" />\\n                    \', escape=False)\n                pass\n            response.write(\'\\n                </div>\\n                <h4 class="h4-mostrar">Ejemplos</h4>\\n                <table class="table table-striped table-bordered">\\n                    <thead>\\n                        <tr>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/germany.gif\')))\n            response.write(\'</th>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/spain.gif\')))\n            response.write(\'</th>\\n                            <th>Fuente</th>\\n                        </tr>\\n                    </thead>\\n                    <tbody>\\n                        \', escape=False)\n            #for registro in prueba:\n            response.write(\'\\n                        <tr>\\n                            <td>\\n                                \', escape=False)\n            #=registro.ejemplo_de\n            response.write(\'\\n                            </td>\\n                            <td>\\n                                \', escape=False)\n            #=registro.ejemplo_es\n            response.write(\'\\n                            </td>\\n                               \\n                            <td>\\n                                 \', escape=False)\n            #if registro.fuente:\n            response.write(\'\\n                                    \', escape=False)\n            #=registro.fuente.nombre\n            response.write(\'\\n                                \', escape=False)\n            #pass\n            response.write(\'\\n                            </td>\\n                        </tr>\\n                        \', escape=False)\n            #pass\n            response.write(\'\\n                    </tbody>\\n                </table>\\n            </div>\\n        </div>                                                                  <!-- FIN DIV OCULTO PARA MOSTRAR EL SUSTANTIVO -->\\n        \\n                                                                                <!-- FIN SI LA PALABRA ES UN SUSTANTIVO Y VERBO A LA VEZ -->\\n                        \\n                                                                                 <!-- SIN  LA PALABRA ES SOLO UN SUSTANTIVO -->\\n        \\n        \', escape=False)\n        elif palabras.sustantivo==True:\n            response.write(\' <!-- 2 -->\\n            <div class="toggle-mostrar">\\n                <h4>Sustantivo</h4>\\n                <a href="#" class="tip" rel="tooltip" \', escape=False)\n            if palabras.articulo==\'Die\':\n                response.write(\'\\n                                                            title="Femenino"\\n                                                        \', escape=False)\n            elif palabras.articulo==\'Der\':\n                response.write(\'\\n                                                            title="Masculino"\\n                                                        \', escape=False)\n            elif palabras.articulo==\'Das\':\n                response.write(\'\\n                                                            title="Neutro"\\n                                                        \', escape=False)\n            else:\n                response.write(\'\\n                                                            title="No hay"\\n                                                        \', escape=False)\n                pass\n            response.write(\'>\\n                    \', escape=False)\n            response.write(palabras.articulo.capitalize())\n            response.write(\'\\n                </a>\\n                <span>\', escape=False)\n            response.write(palabras.palabra.capitalize())\n            response.write(\'</span>\\n                <span>-</span>\\n                <a href="#" class="tip" rel="tooltip" title="Plural">(\', escape=False)\n            response.write(palabras.plural)\n            response.write(\')</a>\\n                <a href="#" class="float_right tip img ocultar-tip"  rel="tooltip" title="Mostrar"><i class="icon-camera icon-white"></i></a>\\n                <a href="#" class="float_right tip img mostrar-tip" id="ocultar-tip" rel="tooltip" title="Ocultar"><i class="icon-camera icon-white"></i></a>\\n            </div>\\n            <div class="wellparley2">\\n                <div id="imagen-sustantivo" class="hide"> \\n                    \', escape=False)\n            if not palabras.imagen:\n                response.write(\'\\n                        <p>No hay imagen</p>\\n                    \', escape=False)\n            else:\n                response.write(\'\\n                        <img class="img-sustantivo" src="\', escape=False)\n                response.write(URL(\'download\', args=palabras.imagen))\n                response.write(\'" />\\n                    \', escape=False)\n                pass\n            response.write(\'\\n                </div>\\n                <h4 class="h4-mostrar">Ejemplos</h4>\\n                <table class="table table-striped table-bordered">\\n                    <tbody>\\n                        <thead>\\n                        <tr>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/germany.gif\')))\n            response.write(\'</th>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/spain.gif\')))\n            response.write(\'</th>\\n                            <th>Fuente</th>\\n                        </tr>\\n                    </thead>\\n                          \', escape=False)\n            for registro in ejemplos(db.ejemplos.tipo==\'sustantivo\').select():\n                response.write(\'\\n                        <tr>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_de)\n                response.write(\'\\n                            </td>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_es)\n                response.write(\'\\n                            </td>\\n                               \\n                            <td>\\n                                 \', escape=False)\n                if registro.fuente:\n                    response.write(\'\\n                                    \', escape=False)\n                    response.write(registro.fuente.nombre)\n                    response.write(\'\\n                                \', escape=False)\n                    pass\n                response.write(\'\\n                            </td>\\n                        </tr>\\n                        \', escape=False)\n                pass\n            response.write(\'\\n                    </tbody>\\n                </table>\\n            </div>\\n            \\n        \', escape=False)\n        elif palabras.adjetivo==True and palabras.adverbio==True:\n            response.write(\'           <!-- SI LA PALABRAS ES UN ADJETIVO Y UN ADVERBIO -->\\n            <div class="btn-group botones_mostrar" data-toggle="buttons-checkbox">\\n           <!-- <button class="btn btn-info " onclick=\\\'$("#toggle1-mostrar").slideToggle(200);\\\'>Mostrar como sustantivo</button> -->\\n            <button class="btn btn-info toggle-mostrar-verbo">\\n                <span class="mostrar-verbo"><i class="icon-plus-sign icon-white"></i> Mostrar Adverbio</span>\\n                <span class="ocultar-verbo hide"><i class="icon-minus-sign icon-white"></i> Ocultar</span>\\n            </button>\\n            <!--<button class="btn btn-info">Ambos</button> -->\\n            <button class="btn btn-info toggle-mostrar-sustantivo">\\n                <span class="mostrar-sustantivo"><i class="icon-plus-sign icon-white"></i> Mostrar Adjetivo</span>\\n                <span class="ocultar-sustantivo hide"><i class="icon-minus-sign icon-white"></i> Ocultar</span>\\n            </button>\\n        </div>\\n        <div id="toggle-mostrar-verbo" class="hide">                            <!-- INICIO DIV OCULTO PARA MOSTRAR EL ADVERBIO -->\\n            <div class="toggle-mostrar"><h4>Adverbio</h4></div>\\n            <div class="wellparley2">\\n                <h4 class="h4-mostrar">Ejemplos</h4>\\n                <table class="table table-striped table-bordered">\\n                    <thead>\\n                        <tr>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/germany.gif\')))\n            response.write(\'</th>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/spain.gif\')))\n            response.write(\'</th>\\n                            <th>Fuente</th>\\n                        </tr>\\n                    </thead>\\n                    <tbody>\\n                        \', escape=False)\n            for registro in ejemplos(db.ejemplos.tipo==\'adverbio\').select():\n                response.write(\'\\n                        <tr>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_de)\n                response.write(\'\\n                            </td>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_es)\n                response.write(\'\\n                            </td>\\n                               \\n                            <td>\\n                                 \', escape=False)\n                if registro.fuente:\n                    response.write(\'\\n                                    \', escape=False)\n                    response.write(registro.fuente.nombre)\n                    response.write(\'\\n                                \', escape=False)\n                    pass\n                response.write(\'\\n                            </td>\\n                        </tr>\\n                        \', escape=False)\n                pass\n            response.write(\'\\n                    </tbody>\\n                </table>\\n                \\n            </div>\\n        </div>                                                                  <!-- FIN DIV OCULTO PARA MOSTRAR EL ADVERBIO -->\\n        \\n        \\n        <div id="toggle-mostrar-sustantivo" class="hide">                       <!-- INICIO DIV OCULTO PARA MOSTRAR EL ADJETIVO -->\\n            <div class="toggle-mostrar">\\n                <h4>Adjetivo</h4>\\n            </div>\\n            <div class="wellparley2">\\n                <h4 class="h4-mostrar">Ejemplos</h4>\\n                <table class="table table-striped table-bordered">\\n                    <thead>\\n                        <tr>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/germany.gif\')))\n            response.write(\'</th>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/spain.gif\')))\n            response.write(\'</th>\\n                            <th>Fuente</th>\\n                        </tr>\\n                    </thead>\\n                    <tbody>\\n                        \', escape=False)\n            for registro in ejemplos(db.ejemplos.tipo==\'adjetivo\').select():\n                response.write(\'\\n                        <tr>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_de)\n                response.write(\'\\n                            </td>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_es)\n                response.write(\'\\n                            </td>\\n                               \\n                            <td>\\n                                 \', escape=False)\n                if registro.fuente:\n                    response.write(\'\\n                                    \', escape=False)\n                    response.write(registro.fuente.nombre)\n                    response.write(\'\\n                                \', escape=False)\n                    pass\n                response.write(\'\\n                            </td>\\n                        </tr>\\n                        \', escape=False)\n                pass\n            response.write(\'\\n                    </tbody>\\n                </table>\\n            </div>\\n        </div>                                                                  <!-- FIN DIV OCULTO PARA MOSTRAR EL ADJETIVO -->\\n        \\n                                                                                <!-- FIN SI LA PALABRA ES UN ADVERVIO Y ADJETIVO -->\\n            \\n        \', escape=False)\n        elif palabras.adjetivo==True:\n            response.write(\'                                       <!-- SI LA PALABRAS ES UN ADJETIVO  -->\\n            <div class="toggle-mostrar">\\n                <h4>Adjetivo</h4>\\n            </div>\\n            <div class="wellparley2">\\n                <h4 class="h4-mostrar">Ejemplos</h4>\\n                <table class="table table-striped table-bordered">\\n                    <tbody>\\n                        <thead>\\n                        <tr>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/germany.gif\')))\n            response.write(\'</th>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/spain.gif\')))\n            response.write(\'</th>\\n                            <th>Fuente</th>\\n                        </tr>\\n                    </thead>\\n                          \', escape=False)\n            for registro in ejemplos(db.ejemplos.tipo==\'adjetivo\').select():\n                response.write(\'\\n                        <tr>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_de)\n                response.write(\'\\n                            </td>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_es)\n                response.write(\'\\n                            </td>\\n                               \\n                            <td>\\n                                \', escape=False)\n                if registro.fuente:\n                    response.write(\'\\n                                    \', escape=False)\n                    response.write(registro.fuente.nombre)\n                    response.write(\'\\n                                \', escape=False)\n                    pass\n                response.write(\'\\n                            </td>\\n                        </tr>\\n                        \', escape=False)\n                pass\n            response.write(\'\\n                    </tbody>\\n                </table>\\n            </div>\\n            \\n        \', escape=False)\n        elif palabras.adverbio==True:\n            response.write(\'           <!-- SI LA PALABRAS ES UN ADVERVIO  -->\\n            <div class="toggle-mostrar">\\n                <h4>Adverbio</h4>\\n            </div>\\n            <div class="wellparley2">\\n                <h4 class="h4-mostrar">Ejemplos</h4>\\n                <table class="table table-striped table-bordered">\\n                    <tbody>\\n                        <thead>\\n                        <tr>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/germany.gif\')))\n            response.write(\'</th>\\n                            <th>\', escape=False)\n            response.write(IMG(_src=URL(\'static\', \'images/spain.gif\')))\n            response.write(\'</th>\\n                            <th>Fuente</th>\\n                        </tr>\\n                    </thead>\\n                          \', escape=False)\n            for registro in ejemplos(db.ejemplos.tipo==\'adverbio\').select():\n                response.write(\'\\n                        <tr>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_de)\n                response.write(\'\\n                            </td>\\n                            <td>\\n                                \', escape=False)\n                response.write(registro.ejemplo_es)\n                response.write(\'\\n                            </td>\\n                               \\n                            <td>\\n                                \', escape=False)\n                if registro.fuente:\n                    response.write(\'\\n                                    \', escape=False)\n                    response.write(registro.fuente.nombre)\n                    response.write(\'\\n                                \', escape=False)\n                    pass\n                response.write(\'\\n                            </td>\\n                        </tr>\\n                        \', escape=False)\n                pass\n            response.write(\'\\n                    </tbody>\\n                </table>\\n            </div>\\n            \\n            \\n        \', escape=False)\n            pass\n        response.write(\'                                                                <!-- FIN SEGUNDO IF CASOS QUE SE PUEDEN DAR CON LAS PALABRAS -->\\n        \\n    \', escape=False)\n        pass\n    response.write(\'                                                                    <!-- FIN IF PALABRAS -->\\n \\n\', escape=False)\n    response.write(\'\\n\\t  \', escape=False)\n    response.write("\\n          \\n        </div><!--/span-->\\n      </div><!--/row-->\\n\\n      <hr>\\n\\n      <footer>\\n        <p>\\xc2\\xa9 Company 2012</p>\\n      </footer>\\n\\n    </div><!--/.fluid-container-->\\n    \\n    <!-- Le javascript\\n    ================================================== -->\\n    <!-- Placed at the end of the document so the pages load faster \\n    <script>\\n      $(function () {\\n      $(\'.tabs a:last\').tab(\'show\')\\n      })\\n    </script>-->\\n   \\n\\n \\n\\n</body>\\n</html>\\n", escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of SocketTimeout object at 0x06BFE8C8>"
+p13
+sS'__module__'
+p14
+S"'gluon.rocket'"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of SocketTimeout object at 0x06BFE8C8>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of SocketTimeout object at 0x06BFE8C8>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of SocketTimeout object at 0x06BFE8C8>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of SocketTimeout object at 0x06BFE8C8>'
+p23
+sS'__reduce__'
+p24
+S'<built-in method __reduce__ of SocketTimeout object at 0x06BFE8C8>'
+p25
+sS'__str__'
+p26
+S"<method-wrapper '__str__' of SocketTimeout object at 0x06BFE8C8>"
+p27
+sS'args'
+p28
+S"('Socket timed out before request.',)"
+p29
+sS'__getattribute__'
+p30
+S"<method-wrapper '__getattribute__' of SocketTimeout object at 0x06BFE8C8>"
+p31
+sS'__class__'
+p32
+S"<class 'gluon.rocket.SocketTimeout'>"
+p33
+sS'__delattr__'
+p34
+S"<method-wrapper '__delattr__' of SocketTimeout object at 0x06BFE8C8>"
+p35
+sS'__repr__'
+p36
+S"<method-wrapper '__repr__' of SocketTimeout object at 0x06BFE8C8>"
+p37
+sS'__setattr__'
+p38
+S"<method-wrapper '__setattr__' of SocketTimeout object at 0x06BFE8C8>"
+p39
+sS'__dict__'
+p40
+S'{}'
+p41
+sS'__weakref__'
+p42
+S'None'
+p43
+sS'__doc__'
+p44
+S"'Exception for when a socket times out between requests.'"
+p45
+sS'__init__'
+p46
+S"<method-wrapper '__init__' of SocketTimeout object at 0x06BFE8C8>"
+p47
+sS'__new__'
+p48
+S'<built-in method __new__ of type object at 0x1E1CCBE8>'
+p49
+ssS'evalue'
+p50
+S'Socket timed out before request.'
+p51
+sS'frames'
+p52
+(lp53
+(dp54
+S'file'
+p55
+S'D:\\Dise\xf1o Web\\Proyectos\\Parleyweb\\web2py\\gluon\\rocket.py'
+p56
+sS'dump'
+p57
+(dp58
+sS'lnum'
+p59
+I1302
+sS'lines'
+p60
+(dp61
+sS'call'
+p62
+S'(self=<WSGIWorker(Thread-9, started daemon)>)'
+p63
+sS'func'
+p64
+S'run'
+p65
+sa(dp66
+g55
+S'D:\\Dise\xf1o Web\\Proyectos\\Parleyweb\\web2py\\gluon\\rocket.py'
+p67
+sg57
+(dp68
+sg59
+I1986
+sg60
+(dp69
+sg62
+S'(self=<WSGIWorker(Thread-9, started daemon)>, conn=<gluon.rocket.Connection object at 0x06B35558>)'
+p70
+sg64
+S'run_app'
+p71
+sa(dp72
+g55
+S'D:\\Dise\xf1o Web\\Proyectos\\Parleyweb\\web2py\\gluon\\rocket.py'
+p73
+sg57
+(dp74
+sg59
+I1807
+sg60
+(dp75
+sg62
+S'(self=<WSGIWorker(Thread-9, started daemon)>, sock_file=<socket._fileobject object at 0x07099FB0>, conn=<gluon.rocket.Connection object at 0x06B35558>)'
+p76
+sg64
+S'build_environ'
+p77
+sa(dp78
+g55
+S'D:\\Dise\xf1o Web\\Proyectos\\Parleyweb\\web2py\\gluon\\rocket.py'
+p79
+sg57
+(dp80
+sg59
+I1376
+sg60
+(dp81
+sg62
+S'(self=<WSGIWorker(Thread-9, started daemon)>, sock_file=<socket._fileobject object at 0x07099FB0>)'
+p82
+sg64
+S'read_request_line'
+p83
+sasS'pyver'
+p84
+S'Python 2.5.4: D:\\Dise\xf1o Web\\Proyectos\\Parleyweb\\web2py\\web2py.exe'
+p85
+sS'etype'
+p86
+S"<class 'gluon.rocket.SocketTimeout'>"
+p87
+sS'date'
+p88
+S'Mon Mar 12 15:32:22 2012'
+p89
+sS'locals'
+p90
+(dp91
+S'sock_file'
+p92
+S'<socket._fileobject object at 0x07099FB0>'
+p93
+sS'self'
+p94
+S'<WSGIWorker(Thread-9, started daemon)>'
+p95
+sssS'traceback'
+p96
+S'Traceback (most recent call last):\n  File "gluon/rocket.py", line 1302, in run\n  File "gluon/rocket.py", line 1986, in run_app\n  File "gluon/rocket.py", line 1807, in build_environ\n  File "gluon/rocket.py", line 1376, in read_request_line\nSocketTimeout: Socket timed out before request.\n'
+p97
+s.
